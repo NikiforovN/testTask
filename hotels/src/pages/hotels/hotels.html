@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Гостиницы</ion-title>
+  </ion-navbar>
+</ion-header>
+
+  <ion-content>
+    <button ion-button color="light" full (click)="openModal()">
+      <ion-icon name="funnel"></ion-icon>
+    </button>
+    <ion-list>
+      <button ion-item *ngFor="let hotel of filteredData" (click)="openHotelPage(hotel)">
+        <ion-avatar item-start>
+          <img src="{{hotel.imageUrl}}" />
+        </ion-avatar>
+        <h2>{{hotel.title}}</h2>
+        <p>{{hotel.address}}</p>
+      </button>
+    </ion-list>
+  </ion-content>
+
+<page-modal
+  [hotelsInfo]="hotels"
+  (onFilter)="filterHotels($event)"
+  id="page-modal"
+  class="modal__hidden"
+></page-modal>
